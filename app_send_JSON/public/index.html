@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<style>
+		.btn-default {
+			margin-bottom: 40px;
+		}
+	</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Hello World</h1>
+	<button class="btn btn-default"> Get data </button>
+	<ul id="list" class="list-group"></ul>
+</div>
+
+
+
+<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script>
+
+	$("button").on("click", function() {
+		$.ajax({
+			url: 'http://localhost:3000/data',
+			dataType: 'json'
+		})
+
+		.done ( function ( info ){
+			var aNameStudents = info.map( student => `<li class="list-group-item"><a href="${student.github}">${student.name}</a></li>` )
+			$("#list").html( aNameStudents.join('') )
+		})
+
+		})
+
+	
+	
+
+	</script>	
+	
+</body>
+</html>
+	
